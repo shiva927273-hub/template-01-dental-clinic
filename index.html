@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SR Dental Zone — Dental Clinic in Marathahalli, Bengaluru</title>
+<meta name="description" content="Multispeciality dental clinic on Marathahalli–Sarjapur ORR, Bengaluru. Implants, smile design, root canals and family dentistry. Book a consultation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Onest:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{
+  --ink:#141a1e; --paper:#faf7f2; --card:#ffffff; --gold:#9e701b; --gold-soft:#b98a2e;
+  --muted:#5b6670; --line:#e7e2d9; --radius:18px;
+}
+*{margin:0;box-sizing:border-box}
+body{font-family:'Onest',system-ui,sans-serif;color:var(--ink);line-height:1.65;background:var(--paper);overflow-x:hidden}
+h1,h2,h3,.serif{font-family:'Fraunces',serif;letter-spacing:-.01em}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.container{max-width:1180px;margin:0 auto;padding:0 1.5rem}
+section{position:relative}
+.pad{padding:6.5rem 0}
+.eyebrow{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.18em;color:var(--gold);margin-bottom:1rem}
+h2{font-size:clamp(1.9rem,3.4vw,2.9rem);font-weight:600;line-height:1.15}
+.lede{color:var(--muted);max-width:38rem;margin-top:1rem}
+.btn{display:inline-block;background:var(--ink);color:#fff;padding:.9rem 1.9rem;border-radius:999px;font-weight:600;font-size:.95rem;transition:.25s;border:1px solid var(--ink)}
+.btn:hover{background:var(--gold);border-color:var(--gold);transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:#fff}
+
+/* ---------- preloader ---------- */
+#loader{position:fixed;inset:0;background:var(--paper);z-index:999;display:grid;place-items:center;transition:opacity .5s,visibility .5s}
+#loader.done{opacity:0;visibility:hidden}
+#loader .dot{width:14px;height:14px;border-radius:50%;background:var(--gold);animation:pulse 1s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(2.2);opacity:.3}}
+
+/* ---------- header ---------- */
+header{position:fixed;top:0;left:0;right:0;z-index:100;transition:.35s;padding:1.1rem 0}
+header .container{display:flex;align-items:center;justify-content:space-between}
+.brand{font-family:'Fraunces',serif;font-weight:700;font-size:1.25rem;display:flex;align-items:center;gap:.6rem}
+.brand .tooth{width:34px;height:34px;border-radius:50%;background:var(--gold);color:#fff;display:grid;place-items:center;font-size:.95rem}
+nav{display:flex;gap:2rem;align-items:center}
+nav a{font-size:.92rem;font-weight:500;opacity:.8;transition:.2s}
+nav a:hover{opacity:1;color:var(--gold)}
+nav .btn{padding:.65rem 1.4rem;font-size:.88rem}
+header.scrolled{background:rgba(250,247,242,.92);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line);padding:.7rem 0}
+header.on-dark nav a,.brand.on-dark{color:#fff}
+header.on-dark .btn.ghost{color:#fff;border-color:rgba(255,255,255,.4)}
+header.on-dark .btn:not(.ghost){background:#fff;color:var(--ink);border-color:#fff}
+.mtoggle{display:none;background:none;border:none;color:inherit;font-size:1.4rem;cursor:pointer}
+
+/* ---------- hero ---------- */
+.hero{min-height:100svh;display:flex;align-items:center;color:#fff;overflow:hidden}
+.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,14,17,.72),rgba(10,14,17,.35) 55%,rgba(10,14,17,.8));z-index:1}
+.hero .container{position:relative;z-index:2;width:100%}
+.hero .eyebrow{color:#e8c98a}
+.hero h1{font-size:clamp(2.2rem,4.5vw,3.6rem);font-weight:600;line-height:1.12;max-width:18ch}
+.hero p{max-width:34rem;margin:1.4rem 0 2rem;font-size:1.08rem;color:rgba(255,255,255,.85)}
+.hero-cta{display:flex;gap:.9rem;flex-wrap:wrap}
+.hero-meta{margin-top:3rem;display:flex;gap:2.4rem;flex-wrap:wrap;font-size:.9rem}
+.hero-meta b{display:block;font-family:'Fraunces',serif;font-size:1.6rem;font-weight:600}
+.hero-meta span{opacity:.75}
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:2;color:#fff;opacity:.7;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;animation:bob 2s infinite}
+@keyframes bob{50%{transform:translate(-50%,8px)}}
+
+/* ---------- stats strip ---------- */
+.stats{background:var(--ink);color:#fff}
+.stats .container{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1rem;padding:2.4rem 1.5rem}
+.stat b{font-family:'Fraunces',serif;font-size:2rem;font-weight:600;color:#e8c98a}
+.stat p{font-size:.85rem;opacity:.7}
+
+/* ---------- about ---------- */
+.about .container{display:grid;grid-template-columns:1.05fr 1fr;gap:4.5rem;align-items:center}
+.about-visual{position:relative}
+.about-visual img{border-radius:var(--radius);box-shadow:0 30px 60px -25px rgba(20,26,30,.35);will-change:transform}
+.float-card{position:absolute;bottom:-1.6rem;right:-1rem;background:var(--card);border-radius:var(--radius);padding:1.1rem 1.4rem;box-shadow:0 20px 40px -18px rgba(20,26,30,.28);display:flex;gap:.9rem;align-items:center}
+.float-card b{font-family:'Fraunces',serif;font-size:1.9rem;font-weight:600;color:var(--gold);line-height:1}
+.float-card small{color:var(--muted);font-size:.8rem;line-height:1.3}
+.about-copy .lede{max-width:30rem}
+.checks{margin:1.6rem 0 2rem;display:grid;gap:.7rem}
+.checks li{list-style:none;display:flex;gap:.7rem;align-items:center;color:var(--muted);font-size:.95rem}
+.checks i{color:var(--gold)}
+
+/* ---------- services (bento) ---------- */
+.svc{background:var(--card)}
+.bento{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem}
+.bento .cell{border:1px solid var(--line);border-radius:var(--radius);padding:1.8rem;background:var(--card);transition:.3s;display:block}
+.bento .cell:hover{transform:translateY(-6px);box-shadow:0 24px 40px -20px rgba(20,26,30,.18);border-color:var(--gold)}
+.bento .big{grid-column:span 2;grid-row:span 2;display:flex;flex-direction:column;justify-content:flex-end;background:var(--ink);color:#fff;border:none;position:relative;overflow:hidden;min-height:380px}
+.bento .big img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.45;transition:.5s}
+.bento .big:hover img{opacity:.6;transform:scale(1.04)}
+.bento .big>div{position:relative}
+.bento .big h3{font-size:1.7rem;margin-bottom:.5rem}
+.bento .big p{opacity:.8;font-size:.95rem}
+.cell .num{font-size:.75rem;font-weight:700;color:var(--gold);letter-spacing:.15em;margin-bottom:1.2rem}
+.cell h3{font-size:1.15rem;margin-bottom:.5rem}
+.cell p{font-size:.9rem;color:var(--muted)}
+.cell .fa-solid{color:var(--gold);font-size:1.4rem;margin-bottom:1rem;display:block}
+
+/* ---------- works / gallery ---------- */
+.works-head{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;margin-bottom:2.6rem;flex-wrap:wrap}
+.gal{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:260px;gap:1.1rem}
+.gal figure{position:relative;border-radius:var(--radius);cursor:pointer}
+.gal figure:nth-child(1){grid-column:span 2;grid-row:span 2}
+.gal .zwrap{width:100%;height:100%;border-radius:var(--radius);overflow:hidden;box-shadow:0 24px 40px -20px rgba(20,26,30,.25);transition:box-shadow .3s}
+.gal figure:hover .zwrap{box-shadow:0 44px 66px -24px rgba(20,26,30,.4)}
+.gal img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+.gal figure:hover .zwrap img{transform:scale(1.07)}
+.gal figcaption{position:absolute;inset:auto 0 0 0;padding:2.4rem 1.3rem 1.1rem;color:#fff;font-size:.9rem;font-weight:600;background:linear-gradient(transparent,rgba(10,14,17,.75));opacity:0;transition:.35s}
+.gal figure:hover figcaption{opacity:1}
+/* Aceternity-style 3D float (ported to vanilla) */
+.t3d{transform-style:preserve-3d;transition:transform .25s ease-out;will-change:transform}
+.t3d [data-z]{transition:transform .25s ease-out;will-change:transform}
+
+/* ---------- reviews marquee ---------- */
+.reviews{background:var(--ink);color:#fff;overflow:hidden}
+.reviews h2{color:#fff}
+.reviews .lede{color:rgba(255,255,255,.65)}
+.marquee{display:flex;gap:1.1rem;width:max-content;animation:slide 55s linear infinite;padding:3.2rem 0 1rem}
+.marquee:hover{animation-play-state:paused}
+@keyframes slide{to{transform:translateX(-50%)}}
+.rev-card{width:340px;flex-shrink:0;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);padding:1.6rem;transition:.3s}
+.rev-card:hover{background:rgba(255,255,255,.1);transform:translateY(-6px)}
+.rev-card .stars{color:#e8c98a;font-size:.8rem;letter-spacing:.15em;margin-bottom:.9rem}
+.rev-card p{font-size:.92rem;opacity:.85;margin-bottom:1.2rem}
+.rev-card footer{display:flex;align-items:center;gap:.8rem;font-size:.85rem}
+.rev-card .ava{width:38px;height:38px;border-radius:50%;background:var(--gold);display:grid;place-items:center;font-weight:700;font-size:.8rem;color:#fff}
+.rev-card b{display:block}
+.rev-card small{opacity:.55}
+.gbadge{display:inline-flex;align-items:center;gap:.5rem;border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:.5rem 1.1rem;font-size:.85rem;margin-bottom:.5rem}
+.gbadge b{color:#e8c98a}
+
+/* ---------- doctors ---------- */
+.docs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.1rem}
+.doc{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:2rem 1.6rem;text-align:center;transition:.3s}
+.doc:hover{transform:translateY(-6px);box-shadow:0 24px 40px -20px rgba(20,26,30,.15)}
+.doc .mono{width:76px;height:76px;border-radius:50%;margin:0 auto 1.1rem;background:linear-gradient(135deg,var(--gold),var(--gold-soft));color:#fff;display:grid;place-items:center;font-family:'Fraunces',serif;font-size:1.6rem;font-weight:600}
+.doc h3{font-size:1.15rem}
+.doc p{font-size:.85rem;color:var(--muted)}
+.doc .tag{display:inline-block;margin-top:.8rem;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);background:#f6efe2;border-radius:999px;padding:.35rem .8rem}
+
+/* ---------- process ---------- */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem;counter-reset:step}
+.step{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:1.8rem;position:relative}
+.step::before{counter-increment:step;content:"0" counter(step);font-family:'Fraunces',serif;font-size:2.4rem;font-weight:600;color:var(--line);line-height:1;display:block;margin-bottom:1rem;transition:.3s}
+.step:hover::before{color:var(--gold)}
+.step h3{font-size:1.08rem;margin-bottom:.5rem}
+.step p{font-size:.88rem;color:var(--muted)}
+
+/* ---------- contact ---------- */
+.contact .container{display:grid;grid-template-columns:1fr 1.2fr;gap:3.5rem;align-items:start}
+.cinfo{display:grid;gap:1.6rem}
+.citem{display:flex;gap:1rem;align-items:flex-start}
+.citem i{width:42px;height:42px;border-radius:12px;background:var(--card);border:1px solid var(--line);display:grid;place-items:center;color:var(--gold);flex-shrink:0}
+.citem h3{font-size:1rem;margin-bottom:.2rem}
+.citem p{font-size:.92rem;color:var(--muted)}
+.map{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);height:100%;min-height:380px}
+.map iframe{width:100%;height:100%;border:0;display:block}
+
+/* ---------- footer ---------- */
+footer{background:var(--ink);color:#fff;padding:4.5rem 0 2rem}
+.fgrid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem}
+.fgrid h4{font-size:.85rem;text-transform:uppercase;letter-spacing:.15em;margin-bottom:1.2rem;color:#e8c98a}
+.fgrid ul{list-style:none;display:grid;gap:.6rem;font-size:.92rem}
+.fgrid li{opacity:.7;transition:.2s}
+.fgrid li:hover{opacity:1;color:#e8c98a}
+.fbottom{margin-top:3.5rem;padding-top:1.6rem;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.82rem;opacity:.55}
+
+/* ---------- scroll animations ---------- */
+.rv{opacity:0;transform:translateY(34px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}.rv.d4{transition-delay:.4s}
+.rv.push{transform:translateY(60px) scale(.94)}
+.rv.push.in{transform:none}
+
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+@media(max-width:900px){
+  .pad{padding:4.5rem 0}
+  nav{display:none}
+  .mtoggle{display:block}
+  .about .container,.contact .container{grid-template-columns:1fr}
+  .bento{grid-template-columns:repeat(2,1fr)}
+  .gal{grid-template-columns:repeat(2,1fr);grid-auto-rows:200px}
+  .gal figure:nth-child(1){grid-column:span 2;grid-row:span 1}
+  .steps{grid-template-columns:repeat(2,1fr)}
+  .fgrid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:560px){
+  .bento,.gal,.steps,.fgrid{grid-template-columns:1fr}
+  .hero h1{font-size:2.2rem}
+  .rev-card{width:280px}
+}
+</style>
+</head>
+<body>
+
+<div id="loader"><div class="dot"></div></div>
+
+<header id="hdr">
+  <div class="container">
+    <a href="#" class="brand"><span class="tooth"><i class="fa-solid fa-tooth"></i></span> SR Dental Zone</a>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#services">Treatments</a>
+      <a href="#works">Our Work</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#team">Doctors</a>
+      <a href="#contact" class="btn">Book Consultation</a>
+    </nav>
+    <button class="mtoggle" aria-label="Toggle menu" onclick="document.querySelector('nav').style.display=document.querySelector('nav').style.display==='flex'?'none':'flex'"><i class="fa-solid fa-bars"></i></button>
+  </div>
+</header>
+
+<!-- HERO — background video is illustrative stock footage -->
+<section class="hero">
+  <video autoplay muted loop playsinline poster="https://images.pexels.com/videos/6763253/aching-tooth-clinic-computer-dentist-6763253.jpeg?auto=compress&cs=tinysrgb&w=1600">
+    <source src="https://videos.pexels.com/video-files/6763253/6763253-hd_1920_1080_25fps.mp4" type="video/mp4">
+  </video>
+  <div class="container">
+    <p class="eyebrow rv">Dental Clinic · Marathahalli, Bengaluru</p>
+    <h1 class="rv d1">Implants, smile design and family dentistry in Marathahalli.</h1>
+    <p class="rv d2">Every treatment starts with a 3D scan and a clear plan. International sterilization protocols, and a 4.7 rating from 490+ patients on Google.</p>
+    <div class="hero-cta rv d3">
+      <a href="#contact" class="btn" style="background:#fff;color:var(--ink);border-color:#fff">Book a Consultation</a>
+      <a href="#works" class="btn ghost" style="color:#fff;border-color:rgba(255,255,255,.45)">See Our Work</a>
+    </div>
+    <div class="hero-meta rv d4">
+      <div><b data-count="4.7" data-dec="1">4.7</b><span>Google rating</span></div>
+      <div><b data-count="490" data-suffix="+">490+</b><span>reviews</span></div>
+      <div><b data-count="15000" data-comma data-suffix="+">15,000+</b><span>patients treated</span></div>
+      <div><b>Since 2011</b><span>on ORR, Kadubeesanahalli</span></div>
+    </div>
+  </div>
+  <div class="scroll-hint">Scroll</div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="container">
+    <div class="stat rv"><b data-count="24" data-suffix="+">24+</b><p>Years of clinical experience</p></div>
+    <div class="stat rv d1"><b data-count="15000" data-comma data-suffix="+">15,000+</b><p>Happy patients</p></div>
+    <div class="stat rv d2"><b data-count="100" data-suffix="%">100%</b><p>Digital workflow</p></div>
+    <div class="stat rv d3"><b>Intl.</b><p>Sterilization protocol</p></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about pad" id="about">
+  <div class="container">
+    <div class="about-visual rv push">
+      <img src="https://images.pexels.com/videos/6630773/clinic-dental-doctor-health-care-6630773.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Dentist examining a patient" id="parallax">
+      <div class="float-card"><b>24</b><small>years of<br>clinical work</small></div>
+    </div>
+    <div class="about-copy">
+      <p class="eyebrow rv">About the clinic</p>
+      <h2 class="rv d1">Founded in 2011, with digital scans and itemized plans before treatment.</h2>
+      <p class="lede rv d2">SR Dental Zone is a multidisciplinary practice on Marathahalli–Sarjapur ORR. Every treatment starts with a 3D scan and an honest conversation — what you need, what you don't, what it costs.</p>
+      <ul class="checks rv d3">
+        <li><i class="fa-solid fa-check"></i> Fully digital clinical workflow — CBCT, intraoral scanning, CAD/CAM</li>
+        <li><i class="fa-solid fa-check"></i> 3D-guided implant surgery, not freehand guessing</li>
+        <li><i class="fa-solid fa-check"></i> Itemized treatment plans before anything begins</li>
+        <li><i class="fa-solid fa-check"></i> Same-day emergency slots, every day</li>
+      </ul>
+      <a href="#contact" class="btn rv d4">Meet the team</a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES — bento, not a wall of identical cards -->
+<section class="svc pad" id="services">
+  <div class="container">
+    <p class="eyebrow rv">Treatments</p>
+    <h2 class="rv d1">Treatments we offer.</h2>
+    <p class="lede rv d2">Six areas of care. Every plan is itemized before treatment begins.</p>
+    <div class="bento" style="margin-top:2.6rem">
+      <a href="#contact" class="cell big rv push">
+        <img src="https://images.pexels.com/videos/6763257/aching-tooth-clinic-computer-dentist-6763257.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Dental implant treatment">
+        <div>
+          <h3>Digital Implant Excellence</h3>
+          <p>3D-guided implant surgery with CBCT planning. Permanent, natural-looking teeth — planned before the first incision is made.</p>
+        </div>
+      </a>
+      <a href="#contact" class="cell rv"><i class="fa-solid fa-wand-magic-sparkles"></i><span class="num">02</span><h3>Smile Design</h3><p>Digital smile makeover previews — you see the result before we begin.</p></a>
+      <a href="#contact" class="cell rv d1"><i class="fa-solid fa-microscope"></i><span class="num">03</span><h3>Microscopic Root Canals</h3><p>Microscope-assisted endodontics. More tooth saved, less pain.</p></a>
+      <a href="#contact" class="cell rv d2"><i class="fa-solid fa-teeth-open"></i><span class="num">04</span><h3>Aligners & Braces</h3><p>Clear aligner therapy with digital tracking at every step.</p></a>
+      <a href="#contact" class="cell rv d3"><i class="fa-solid fa-teeth"></i><span class="num">05</span><h3>Full-Mouth Rehab</h3><p>Complete restoration — function and aesthetics rebuilt together.</p></a>
+      <a href="#contact" class="cell rv d4"><i class="fa-solid fa-child"></i><span class="num">06</span><h3>Family & Kids</h3><p>Checkups, fillings and fluoride for every age — gentle by default.</p></a>
+    </div>
+  </div>
+</section>
+
+<!-- OUR WORK — illustrative stock imagery, scroll-in + hover zoom -->
+<section class="pad" id="works">
+  <div class="container">
+    <div class="works-head">
+      <div>
+        <p class="eyebrow rv">Our work</p>
+        <h2 class="rv d1">Inside the clinic.</h2>
+      </div>
+      <p class="lede rv d2" style="margin-top:0">A look at the treatments we provide, from diagnosis to procedure and follow-up.</p>
+    </div>
+    <div class="gal">
+      <figure class="t3d rv push"><div class="zwrap"><img src="https://images.pexels.com/videos/6763246/aching-tooth-clinic-computer-dentist-6763246.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Dentist performing a procedure" data-z="110"></div><figcaption data-z="80">Procedure in progress — operating microscope</figcaption></figure>
+      <figure class="t3d rv d1 push"><div class="zwrap"><img src="https://images.pexels.com/videos/6763248/aching-tooth-clinic-computer-dentist-6763248.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Patient receiving dental care" data-z="90"></div><figcaption data-z="70">Routine care and checkups</figcaption></figure>
+      <figure class="t3d rv d2 push"><div class="zwrap"><img src="https://images.pexels.com/videos/6763255/aching-tooth-clinic-computer-dentist-6763255.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Dentist checking teeth" data-z="90"></div><figcaption data-z="70">Diagnosis before treatment — always</figcaption></figure>
+      <figure class="t3d rv d3 push"><div class="zwrap"><img src="https://images.pexels.com/videos/6192970/bank-card-calculation-caries-caries-removal-6192970.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Dentists working on a patient" data-z="90"></div><figcaption data-z="70">Two-hands dentistry: doctor + assistant</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS — pushing-out marquee cards -->
+<section class="reviews pad" id="reviews">
+  <div class="container" style="text-align:center">
+    <div class="gbadge rv"><i class="fa-brands fa-google" style="color:#e8c98a"></i> <b>4.7</b> · 490+ Google reviews</div>
+    <h2 class="rv d1">What our patients say.</h2>
+    <p class="lede rv d2" style="margin-left:auto;margin-right:auto">Reviews from our Google Business profile. Hover to pause and read.</p>
+  </div>
+  <div class="marquee" id="mq"></div>
+</section>
+
+<!-- DOCTORS -->
+<section class="pad" id="team" style="background:var(--card)">
+  <div class="container">
+    <p class="eyebrow rv">The doctors</p>
+    <h2 class="rv d1">Meet our dentists.</h2>
+    <p class="lede rv d2">Dr. Suman Reddy and Dr. Keerthi Reddy lead implant, orthodontic, root canal and family care at the clinic.</p>
+    <div class="docs" style="margin-top:2.6rem">
+      <div class="doc rv push"><div class="mono">SR</div><h3>Dr. Suman Reddy</h3><p>Orthodontics, Prosthodontics & Implantology — designs full smile rebuilds, from cross-bite correction to full-arch implants.</p><span class="tag">Implants · Smile Design</span></div>
+      <div class="doc rv d1 push"><div class="mono">KR</div><h3>Dr. Keerthi Reddy</h3><p>Multispecialty dental care — root canals, extractions and family dentistry with detailed step-by-step patient guidance.</p><span class="tag">Endodontics · Family</span></div>
+    </div>
+    <!-- swap .mono blocks for <img style="border-radius:50%"> when real doctor photos are available -->
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="pad">
+  <div class="container">
+    <p class="eyebrow rv">Your first visit</p>
+    <h2 class="rv d1">Your first visit, step by step.</h2>
+    <div class="steps" style="margin-top:2.6rem">
+      <div class="step rv"><h3>Book in 2 minutes</h3><p>Call or WhatsApp. Emergency slots held daily.</p></div>
+      <div class="step rv d1"><h3>Scan & diagnose</h3><p>CBCT / intraoral scan — we show you what we see.</p></div>
+      <div class="step rv d2"><h3>Plan & price it</h3><p>Itemized plan with options. Nothing starts without your yes.</p></div>
+      <div class="step rv d3"><h3>Treat & follow up</h3><p>Gentle execution, scheduled reviews, warranty on implants.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact pad" id="contact" style="background:var(--card)">
+  <div class="container">
+    <div>
+      <p class="eyebrow rv">Contact</p>
+      <h2 class="rv d1">Book your consultation.</h2>
+      <div class="cinfo" style="margin-top:2.2rem">
+        <div class="citem rv"><i class="fa-solid fa-phone"></i><div><h3>Call or WhatsApp</h3><p>+91 80508 08811 · +91 90190 26096</p></div></div>
+        <div class="citem rv d1"><i class="fa-solid fa-location-dot"></i><div><h3>Visit</h3><p>No. 36/1, 2nd Floor, Marathahalli–Sarjapur ORR, Opposite Prestige Tech Park, Kadubeesanahalli, Bengaluru 560103</p></div></div>
+        <div class="citem rv d2"><i class="fa-solid fa-envelope"></i><div><h3>Email</h3><p>contact@srdentalzone.com</p></div></div>
+        <div class="citem rv d3"><i class="fa-solid fa-clock"></i><div><h3>Hours</h3><p>Mon–Sun · 9:30 AM – 8:30 PM</p></div></div>
+      </div>
+    </div>
+    <div class="map rv push">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.4639059501756!2d77.69505957511595!3d12.94213993773947!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae124ab4f2e94f%3A0x4b959014f78e8d0e!2sDental%20Zone!5e0!3m2!1sen!2sin!4v1778063299210!5m2!1sen!2sin" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="fgrid">
+      <div>
+        <a href="#" class="brand" style="color:#fff;margin-bottom:1rem"><span class="tooth"><i class="fa-solid fa-tooth"></i></span> SR Dental Zone</a>
+        <p style="opacity:.6;font-size:.9rem;max-width:26rem;margin-top:1rem">Precision-led multispecialty dental clinic on Marathahalli–Sarjapur ORR, Bengaluru. Serving families since 2011.</p>
+      </div>
+      <div><h4>Clinic</h4><ul><li>About</li><li>Treatments</li><li>Our Work</li><li>Contact</li></ul></div>
+      <div><h4>Treatments</h4><ul><li>Dental Implants</li><li>Smile Design</li><li>Root Canal</li><li>Aligners</li></ul></div>
+      <div><h4>Reach us</h4><ul><li>+91 80508 08811</li><li>contact@srdentalzone.com</li><li>Kadubeesanahalli, Bengaluru</li><li>Instagram · YouTube · LinkedIn</li></ul></div>
+    </div>
+    <div class="fbottom"><span>© 2026 SR Dental Zone</span><span>Kadubeesanahalli, Bengaluru</span></div>
+  </div>
+</footer>
+
+<script>
+/* preloader */
+window.addEventListener('load',()=>document.getElementById('loader').classList.add('done'));
+setTimeout(()=>document.getElementById('loader').classList.add('done'),2500);
+
+/* reviews marquee — Google reviews quoted from srdentalzone.com */
+const REVIEWS=[
+ ["I recently visited Dental Zone Clinic for a root canal treatment with unbearable pain, and I had a truly great experience. Dr. Suman Reddy and Dr. Keerthi Reddy were extremely professional, patient, and reassuring throughout the procedure. They explained everything clearly and made sure I was comfortable at every step. What impressed me the most was that their team followed up with me after the treatment to check if I was experiencing any pain — shows how much they genuinely care.","Surekha H E","Root Canal"],
+ ["It is very rare to find a specialist who is an expert in both Orthodontics and Prosthodontics — Dr. Suman bridges that gap perfectly. My case was complicated, involving cross-bite correction and implants. He didn't just treat me; he designed and built my teeth from the ground up. If you need someone who truly understands the architecture of a smile, this is the place.","Padmakar Pasala","Implants + Cross-bite"],
+ ["I received a dental implant here and couldn't be more satisfied! Every step was clearly explained, which made me feel well-informed and confident throughout. Especially impressed by the modern equipment and the calm, professional manner of the dentist.","Hip Bee","Dental Implant"],
+ ["Dental Zone is one of the best places to go for all your dental problems. I got my wisdom teeth extracted — Dr. Suman and Dr. Keerthi were very patient and explained each step in detail. Top-notch facilities, and the post-op follow-ups are excellent.","Debjyoti Das","Wisdom Tooth Surgery"]
+];
+const mq=document.getElementById('mq');
+const card=([t,n,s])=>`<article class="rev-card t3d"><div class="stars" data-z="45">★★★★★</div><p data-z="55">"${t}"</p><footer data-z="40"><span class="ava">${n[0]}</span><span><b>${n}</b><small>${s} · Google review</small></span></footer></article>`;
+mq.innerHTML=[...REVIEWS,...REVIEWS].map(card).join('');
+
+/* scroll reveals */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+/* 3D float — port of Aceternity's CardContainer/CardItem (perspective + rotate + translateZ) */
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.querySelectorAll('.t3d').forEach(c=>{
+  c.addEventListener('mousemove',e=>{
+    const r=c.getBoundingClientRect();
+    const x=(e.clientX-r.left-r.width/2)/25, y=(e.clientY-r.top-r.height/2)/25;
+    c.style.transform=`perspective(1000px) rotateY(${x}deg) rotateX(${-y}deg)`;
+  });
+  c.addEventListener('mouseenter',()=>c.querySelectorAll('[data-z]').forEach(el=>el.style.transform=`translateZ(${el.dataset.z}px)`));
+  c.addEventListener('mouseleave',()=>{c.style.transform='perspective(1000px) rotateY(0deg) rotateX(0deg)';c.querySelectorAll('[data-z]').forEach(el=>el.style.transform='');});
+});
+
+/* count-up numbers — animate 0 → target when scrolled into view */
+const fmtN=(v,el)=>{
+  let s=el.dataset.dec?Number(v).toFixed(+el.dataset.dec):String(Math.round(v));
+  if(el.dataset.comma)s=Number(s).toLocaleString('en-IN');
+  return s+(el.dataset.suffix||'');
+};
+const cio=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;
+  cio.unobserve(e.target);
+  const el=e.target,target=parseFloat(el.dataset.count),t0=performance.now(),dur=1600;
+  const tick=t=>{
+    const p=Math.min((t-t0)/dur,1),ease=1-Math.pow(1-p,3);
+    el.textContent=fmtN(target*ease,el);
+    if(p<1)requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+}),{threshold:.6});
+document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
+
+/* header state */
+const hdr=document.getElementById('hdr');
+const onScroll=()=>{
+  hdr.classList.toggle('scrolled',scrollY>60);
+  hdr.classList.toggle('on-dark',scrollY<innerHeight-80);
+  /* gentle parallax on the about image */
+  const p=document.getElementById('parallax');
+  if(p){const r=p.getBoundingClientRect();
+    if(r.top<innerHeight&&r.bottom>0){const o=(r.top+r.height/2-innerHeight/2)/innerHeight;p.style.transform=`translateY(${o*-24}px)`;}}
+};
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+/* smooth anchors */
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();document.querySelector(a.hash)?.scrollIntoView({behavior:'smooth'});}));
+</script>
+</body>
+</html>
