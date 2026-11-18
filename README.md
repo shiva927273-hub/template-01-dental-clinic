@@ -31,6 +31,23 @@ All vanilla JS/CSS, no libraries:
 - **Count-up numbers** — `data-count`, `data-dec`, `data-comma`, `data-suffix` attributes, cubic ease-out, `en-IN` number grouping. The static HTML text is the no-JS fallback.
 - **Marquee** — content duplicated ×2, `translateX(-50%)` keyframes, `animation-play-state: paused` on hover.
 
+## Responsive
+
+Three breakpoints, all in the single `<style>` block:
+
+| Width | Layout |
+|---|---|
+| > 900px | full desktop: 4-col bento, 3-col gallery, side-by-side hero/about/contact |
+| ≤ 900px | hamburger menu (panel under the header), 2-col bento/gallery/steps/footer |
+| ≤ 560px | everything single column, full-width CTAs, smaller marquee cards |
+
+Two mobile-specific rules worth keeping:
+
+- `@media(hover:none)` shows the gallery captions permanently and kills the 3D tilt —
+  touch devices have no hover, so the desktop version would hide those captions forever.
+- `[id]{scroll-margin-top:84px}` keeps anchor jumps from hiding section titles under
+  the fixed header.
+
 ## Make it yours
 
 Search `index.html` for these and replace:

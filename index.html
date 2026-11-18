@@ -176,21 +176,50 @@ footer{background:var(--ink);color:#fff;padding:4.5rem 0 2rem}
 .rv.push.in{transform:none}
 
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+/* anchor targets must clear the fixed header */
+[id]{scroll-margin-top:84px}
+
 @media(max-width:900px){
   .pad{padding:4.5rem 0}
   nav{display:none}
-  .mtoggle{display:block}
-  .about .container,.contact .container{grid-template-columns:1fr}
+  /* mobile menu: full-width panel under the header (not a side drawer — header's
+     backdrop-filter would trap a position:fixed child) */
+  nav.open{display:flex;flex-direction:column;align-items:stretch;gap:0;position:absolute;top:100%;left:0;right:0;background:var(--paper);padding:.4rem 1.5rem 1.2rem;border-top:1px solid var(--line);box-shadow:0 30px 40px -30px rgba(0,0,0,.5)}
+  nav.open a{padding:.9rem .1rem;font-size:1rem;opacity:1;border-bottom:1px solid var(--line);color:var(--ink)}
+  nav.open .btn{margin-top:.9rem;text-align:center;border-bottom:none;background:var(--ink);color:#fff}
+  header.on-dark nav.open a{color:var(--ink)}
+  header.on-dark nav.open .btn{color:#fff}
+  .mtoggle{display:block;padding:.45rem .6rem;margin-right:-.6rem;line-height:1}
+  .about .container,.contact .container{grid-template-columns:1fr;gap:2.6rem}
   .bento{grid-template-columns:repeat(2,1fr)}
   .gal{grid-template-columns:repeat(2,1fr);grid-auto-rows:200px}
   .gal figure:nth-child(1){grid-column:span 2;grid-row:span 1}
   .steps{grid-template-columns:repeat(2,1fr)}
   .fgrid{grid-template-columns:1fr 1fr}
+  .hero{padding:6rem 0 4rem}
+  .hero-meta{gap:1.6rem 2rem;margin-top:2.2rem}
+  .map{min-height:320px}
 }
 @media(max-width:560px){
   .bento,.gal,.steps,.fgrid{grid-template-columns:1fr}
-  .hero h1{font-size:2.2rem}
-  .rev-card{width:280px}
+  .gal{grid-auto-rows:220px}
+  .gal figure:nth-child(1){grid-column:span 1;grid-row:span 1}
+  .bento .big{grid-column:span 1;grid-row:span 1;min-height:300px}
+  .hero h1{font-size:2.05rem;max-width:none}
+  .hero p{font-size:1rem;margin:1.2rem 0 1.6rem}
+  .hero-cta .btn{width:100%;text-align:center}
+  .hero-meta b{font-size:1.4rem}
+  h2{font-size:1.75rem}
+  .rev-card{width:min(84vw,300px);padding:1.3rem}
+  .float-card{right:.4rem;bottom:-1.1rem;padding:.9rem 1.1rem}
+  .float-card b{font-size:1.5rem}
+  .scroll-hint{display:none}
+}
+/* touch devices have no hover: show captions, skip the 3D tilt */
+@media(hover:none){
+  .gal figcaption{opacity:1;padding-top:2.6rem;background:linear-gradient(transparent,rgba(10,14,17,.78))}
+  .gal .zwrap img,.gal figure:hover .zwrap img{transform:none}
+  .t3d,.t3d [data-z]{transform:none!important}
 }
 </style>
 </head>
@@ -209,7 +238,7 @@ footer{background:var(--ink);color:#fff;padding:4.5rem 0 2rem}
       <a href="#team">Doctors</a>
       <a href="#contact" class="btn">Book Consultation</a>
     </nav>
-    <button class="mtoggle" aria-label="Toggle menu" onclick="document.querySelector('nav').style.display=document.querySelector('nav').style.display==='flex'?'none':'flex'"><i class="fa-solid fa-bars"></i></button>
+    <button class="mtoggle" aria-label="Menu" aria-expanded="false" onclick="const n=document.querySelector('nav');n.classList.toggle('open');this.setAttribute('aria-expanded',n.classList.contains('open'))"><i class="fa-solid fa-bars"></i></button>
   </div>
 </header>
 
@@ -444,8 +473,15 @@ const onScroll=()=>{
 };
 addEventListener('scroll',onScroll,{passive:true});onScroll();
 
-/* smooth anchors */
-document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();document.querySelector(a.hash)?.scrollIntoView({behavior:'smooth'});}));
+/* smooth anchors + close the mobile menu on tap */
+const navEl=document.querySelector('nav');
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
+  e.preventDefault();
+  document.querySelector(a.hash)?.scrollIntoView({behavior:'smooth'});
+  navEl.classList.remove('open');
+}));
+document.addEventListener('click',e=>{if(!e.target.closest('header'))navEl.classList.remove('open');});
+addEventListener('keydown',e=>{if(e.key==='Escape')navEl.classList.remove('open');});
 </script>
 </body>
 </html>
